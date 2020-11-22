@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="爬虫：避免反爬 伪装http头  User Agent（UA）：是一种向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。  User-Agent会告诉网站服务器，访问者是通过什么工具来请求的，如果是爬虫请求，一般会拒绝，如果是用户浏览器，就会应答。  UA 标准格式为：Mozilla&#x2F;5.0 (平台) 引擎版本 浏览器版本号  利">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试知识总结">
+<meta property="og:url" content="http://example.com/posts/55d100b9/index.html">
+<meta property="og:site_name" content="Skittles Blog">
+<meta property="og:description" content="爬虫：避免反爬 伪装http头  User Agent（UA）：是一种向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。  User-Agent会告诉网站服务器，访问者是通过什么工具来请求的，如果是爬虫请求，一般会拒绝，如果是用户浏览器，就会应答。  UA 标准格式为：Mozilla&#x2F;5.0 (平台) 引擎版本 浏览器版本号  利">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/bfd679c7.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/7a525be3.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/db3b228c.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/d0aa5531.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/3ba3a56d.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/49f86605.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/c06923b4.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/98d2581e.png">
+<meta property="og:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/9b748ebd.png">
+<meta property="article:published_time" content="2020-11-22T09:04:47.000Z">
+<meta property="article:modified_time" content="2020-11-22T09:09:50.365Z">
+<meta property="article:author" content="fusy">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/posts/55d100b9/:storage/942aa877-0348-4f8c-afb3-20a45791d984/bfd679c7.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/posts/55d100b9/"/>
+
+
+
+
+
+  <title>面试知识总结 | Skittles Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skittles Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/55d100b9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skittles Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试知识总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-22T17:04:47+08:00">
+                2020-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/55d100b9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/55d100b9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="爬虫："><a href="#爬虫：" class="headerlink" title="爬虫："></a>爬虫：</h2><h3 id="避免反爬"><a href="#避免反爬" class="headerlink" title="避免反爬"></a>避免反爬</h3><ol>
+<li><p>伪装http头</p>
+<ul>
+<li><p>User Agent（UA）：是一种向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。</p>
+</li>
+<li><p>User-Agent会告诉网站服务器，访问者是通过什么工具来请求的，如果是爬虫请求，一般会拒绝，如果是用户浏览器，就会应答。<br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/bfd679c7.png" alt="bfd679c7.png"></p>
+</li>
+<li><p>UA 标准格式为：<br><code>Mozilla/5.0 (平台) 引擎版本 浏览器版本号</code> </p>
+<p>利用浏览器开发者模式，点击Headers，查看Request Headers的User-Agent字段，复制并构造成字典形式</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>采用代理ip（若ip被封或被限制）</li>
+<li>模拟登录<br>模拟登录，或手动登录记下cookie并添上</li>
+</ol>
+<ol start="4">
+<li>验证码</li>
+<li>抓取频度</li>
+</ol>
+<ol start="6">
+<li>采用模拟浏览器的一些方式，进行模拟人的行为，包括自动填表，自动点击，自动滑动滚动条等，可以用selenium 和htmlunit 实现，phtomjs 也是一个不错的选择</li>
+</ol>
+<h2 id="数据库："><a href="#数据库：" class="headerlink" title="数据库："></a>数据库：</h2><p>如何建表：一个学生可以选多门课，一门课可以多个老师，一个老师教一门课<br>怎么查询一个老师教的所有学生</p>
+<h2 id="操作系统："><a href="#操作系统：" class="headerlink" title="操作系统："></a>操作系统：</h2><ol>
+<li>线程同步</li>
+<li>线程互斥</li>
+<li>进程间通信</li>
+<li>线程池<br>命令行ctrl+C 中断操作系统发生了什么<br>键盘输入信号对应什么操作<br>怎么避免死锁</li>
+</ol>
+<h2 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h2><ol>
+<li><p>网络模型<br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/7a525be3.png" alt="7a525be3.png"><br>TCP/IP 族：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP</p>
+<p> <strong>TCP/IP模型：</strong></p>
+<ul>
+<li>链路层：负责封装和解封装IP报文，发送和接受ARP/RARP报文等。</li>
+<li>网络层：负责路由以及把分组报文发送给目标网络或主机。</li>
+<li>传输层：负责对报文进行分组和重组，并以TCP或UDP协议格式封装报文。</li>
+<li>应用层：负责向用户提供应用程序，比如HTTP、FTP、Telnet、DNS、SMTP等。</li>
+</ul>
+</li>
+<li><p>TCP，UDP区别<br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/db3b228c.png" alt="49fcdf08.png"><br> <strong>UDP（User Datagram Protocol）：</strong> </p>
+<ul>
+<li><p>面向无连接，只搬运数据，不对数据报文进行拆分和拼接</p>
+<ul>
+<li>在发送端，应用层传输层的 UDP 传递数据，UDP 给数据增加 UDP 头标识说明是 UDP 协议，然后传递给网络层 –&gt; 面向报文</li>
+<li>在接收端，网络层将数据传递给传输层，UDP 只去除 IP 报文头就传递给应用层，不会任何拼接操作 </li>
+<li>头部开销 8 字节，包括：16位端口号 x 2， 整个数据报文的长度，整个数据报文的检验和（IPv4可选字段）（用于发现头部信息和数据中的错误）</li>
+</ul>
+<p>UDP丢包了怎么办？</p>
+</li>
+<li><p>UDP 包过大 —– 增加系统发送或接收缓冲区大小</p>
+</li>
+<li><p>发包速率过快 —– 增加应答机制，处理完一个包后，再继续发包</p>
+</li>
+<li><p>recvfrom()接收到数据之后处理速度太慢 —– 服务器程序启动之初，开辟两个线程，一个线程专门用于接收数据包，并存放在应用层的缓存区；另外一个线程用于专门处理和响应数据包请求，避免因为处理数据造成数据丢包。其本质上还是增大了缓冲区大小，只是将系统缓冲区转移到了自己的缓冲区。</p>
+</li>
+<li><p>在应用层实现丢包重发机制和超时机制，确保数据包不丢失。（类似于TCP的确认机制，RUDP、RTP、UDT 都是基于UDP的可靠传输的应用层协议）</p>
+</li>
+</ul>
+<p> <strong>TCP（Transfer Control Protocol）：</strong>  </p>
+<ul>
+<li>面向字节流：在不保留报文边界的情况下以字节流方式进行传输。</li>
+<li>可靠传输（/怎么判断丢包）：依靠 TCP的段编号以及确认号。<ul>
+<li>给每个包一个序号，保证接收端按序接收。</li>
+<li>接收端对已成功收到的字节返回相应的确认号（ACK）</li>
+<li>如果发送端在合理的往返时延内（RTT）没有收到ACK，对应的数据认为丢失，重传</li>
+</ul>
+</li>
+<li>全双工通信：TCP允许通信双方的应用程序在任何时候都能发送数据。TCP连接的两端设有缓存，用来临时存放双向通信的数据。TCP可以立即发送一个数据段，也可以缓存一段时间以便一次发送更多的数据段（最大的数据段大小取决于MSS）。</li>
+<li> TCP头部结构：<img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/d0aa5531.png" alt="d0aa5531.png"></li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p>三次握手，四次挥手：<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1654225744653405133&wfr=spider&for=pc">详解 TCP 连接的“ 三次握手 ”与“ 四次挥手 ”</a><br> <strong>三次握手：</strong></p>
+<ul>
+<li><p>第一次握手：客户端向服务端发送链接请求报文段（包含自身的数据通讯初始序号），之后进入 SYN-SENT 状态</p>
+</li>
+<li><p>第二次握手：服务端收到连接请求报文段，返回应答（包含自身的数据通讯初始序号），发送完成后进入 SYN-RECEIVED 状态</p>
+</li>
+<li><p>第三次握手：客户端收到连接同意的应答后，向服务端返回确认报文，之后进入 ESTABLISHED 状态，服务端收到应答后进入 ESTABLISHED 状态，连接建立成功。</p>
+<p>为什么三次握手而不是两次？：为了防止出现失效的连接请求报文段被服务端接受的情况</p>
+</li>
+</ul>
+<p> <strong>四次挥手：</strong></p>
+<ul>
+<li>第一次挥手：客户端向服务端发送连接释放请求</li>
+<li>第二次挥手：服务端收到连接释放请求，告诉应用层释放 TCP 连接，向客户端发送 ACK，进入 CLOSE_WAIT 状态，表明客户端到服务端的连接已释放。服务端不再接收客户端发的数据，但仍可以向客户端发送数据。</li>
+<li>第三次挥手：服务端向客户端发送没有发完的数据，完毕后，向客户端发送连接释放请求，进入 LAST_ACK 状态</li>
+<li>第四次挥手：客户端收到释放请求，向服务端发送确认应答，客户端进入 TIME-WAIT 状态，若 2MSL 内没有服务端的重发请求，就进入 CLOSED 状态。当服务端收到确认应答后，进入 CLOSED 状态。（MSL：最大段生存期，指报文段在网络中生存的时间，超时会被抛弃）</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<ul>
+<li><p>拥塞的标志：1. 重传计时器超时 2. 收到3个重复确认</p>
+</li>
+<li><p>拥塞机制：<br><strong>慢开始与拥塞避免：</strong></p>
+<ol>
+<li>慢开始：<ul>
+<li>TCP 开始发送设置 cwnd = 1，由小到大逐渐增加拥塞窗口的大小</li>
+<li>慢开始门限：<img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/3ba3a56d.png" alt="3ba3a56d.png"></li>
+</ul>
+</li>
+<li>拥塞避免：<ul>
+<li>缓慢增大拥塞窗口 cwnd，每经过一个往返时间 RTT 就把发送方的拥塞控制窗口➕1</li>
+<li>不能完全避免拥塞</li>
+</ul>
+</li>
+<li>无论是在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是没有收到确认，虽然没有收到确认可能是其他原因的分组丢失，但是因为无法判定，所以都当做拥塞来处理），就把慢开始门限设置为出现拥塞时的发送窗口大小的一半。然后把拥塞窗口设置为1，执行慢开始算法。即，<em>加法增大</em>，<em>乘法减小</em><br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/49f86605.png" alt="49f86605.png"><br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/c06923b4.png" alt="c06923b4.png"></li>
+</ol>
+<p><strong>快重传与快恢复：</strong></p>
+<ol>
+<li>快重传：接收方收到一个失序的报文段后立即发出重复确认，发送方只要一连收到三个重复确认就立即重传对方尚未收到的报文段（不需要等待设置的重传计时器的时间到期，能提高整个网络的吞吐量）<br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/98d2581e.png" alt="98d2581e.png"></li>
+<li>快恢复：发送方连续接收到三个重复确认，执行 <em>乘法减小</em>，不执行慢开始（why？ 因为能连续收到好几个重复确认，所以发送方认为没有拥塞，所以将cwnd设为ssthresh的大小，然后执行拥塞避免算法）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>流量控制<br>速度匹配机制 - 匹配发送方的发送速率和接收方应用程序读取速率，防止缓存的溢出<br>滑动窗口协议：发送方维护接收窗口变量，接收窗口告诉发送方该接收方还有多少可用的缓存空间</p>
+</li>
+</ol>
+<p><strong>拥塞控制 vs 流量控制</strong></p>
+<ul>
+<li>拥塞控制是防止过多的数据注入到网络中，可以使网络中的路由器或链路不致过载，是一个全局性的过程。</li>
+<li>流量控制是点对点通信量的控制，是一个端到端的问题，主要就是抑制发送端发送数据的速率，以便接收端来得及接收。</li>
+</ul>
+<ol start="7">
+<li><p>怎么建立连接的问题<br>浏览器输入网址：</p>
+</li>
+<li><p>GET 和 POST 区别<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/songanwei/p/9387815.html">面试题思考：GET和POST两种基本请求方法的区别 - 不断努力的青春 - 博客园</a></p>
+<ul>
+<li>GET 和 POST 是 http协议中两种发送请求的方法，底层是 TCP/IP （http底层是TCP/IP）POST和GET都是向服务器提交数据，并且都会从服务器获取数据。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST没有。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生一个TCP数据包；POST产生两个TCP数据包。即，对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。<br>POST 时间消耗多，但发两次包的TCP在验证数据包完整性上有利。GET和POST有自己的语义，不能混用。不是所有浏览器都会在POST中发送两次包。<br>！！！ GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。 </li>
+</ul>
+</li>
+<li><p>http协议</p>
+<ul>
+<li>超文本传输协议，是基于TCP/IP的关于数据如何在万维网中如何通信的协议，目的是保证客户机与服务器之间的通信</li>
+</ul>
+</li>
+<li><p>https加密方式</p>
+</li>
+<li><p>常见http状态码：<br>200 OK ：客户端请求成功<br>400 Bad Request ：客户端请求有语法错误，不能被服务器所理解。<br>401 Unauthorized ：请求未经授权，这个状态代码必须和WWW-Authenticate 报头域一起使用。<br>403 Forbidden ： 服务器收到请求，但是拒绝提供服务<br>404 Not Found ： 请求资源不存在<br>500 Internal Server Error ： 服务器发生不可预期的错误<br>503 Server Unavailabler ： 服务器当前不能处理客户端的请求，一段时间后可能恢复正常。</p>
+</li>
+</ol>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ol>
+<li><p>数组表和链表的区别</p>
+</li>
+<li><p>hashmap<br> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/flyuz/p/11378491.html">HashMap面试总结 - feifei97 - 博客园</a></p>
+<ul>
+<li>数据结构： 数组+链表，链表长度 &gt;8 转为红黑树<ul>
+<li>why 数组+ 链表？<br>解决Hash冲突，对key取哈希值作为下标，存入数组，</li>
+<li>why 在解决hash冲突的时候，不直接用红黑树?而选择先用链表，再转红黑树?<br>因为红黑树需要进行左旋，右旋，变色这些操作来保持平衡，而单链表不需要。 当元素小于8个当时候，此时做查询操作，链表结构已经能保证查询性能。当元素大于8个的时候，此时需要红黑树来加快查询速度，但是新增节点的效率变慢了。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>hashmap和红黑树区别</p>
+</li>
+<li><p>hash冲突解决方法<br> (1)开放定址法 (2)链地址法 (3)再哈希法 (4)公共溢出区域法<br>HashMap中使用的是链地址法。</p>
+</li>
+<li><p>排序算法</p>
+<ul>
+<li>快排</li>
+<li>堆排</li>
+</ul>
+</li>
+<li><p>平衡🌲</p>
+<ul>
+<li>AVL</li>
+<li>红黑树</li>
+</ul>
+</li>
+<li><p>字典内部实现</p>
+</li>
+<li><p>Array内部实现</p>
+</li>
+</ol>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
+<li><p>动态规划算法</p>
+</li>
+<li><p>round5 -&gt; round7</p>
+</li>
+<li><h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2></li>
+<li><p>内存管理机制</p>
+<ul>
+<li>内存机制：谁持有（retain）谁释放（release）</li>
+<li>内存管理机制：采用引用计数。当一个对象当引用计数为0时才能被释放。</li>
+<li>ARC（自动内存管理）：系统帮助开发者管理已经创建好的对象或内存空间，自动在系统认为合适的时间、地点释放内存空间</li>
+<li>MRC（手动内存管理）。在MRC中引起引用计数变化的关键字：alloc，retain，copy，release，autorelease<ul>
+<li>alloc：创建对象时开辟新的内存空间，只能由类调用</li>
+<li>retain：只能由对象调用，使对象的内存空间引用计数+1，不开辟新的内存空间</li>
+<li>copy：复制一个对象到一块新的内存空间上，旧内存空间的引用计数不会变化，新内存空间的引用计数由0到1.<br>浅拷贝：只拷贝地址，和retain相同，不会开辟新的内存空间。<br>深拷贝：普通深拷贝只开辟新的内存空间存放容器对象，容器内元素的地址没有改变（数组元素没有开辟新的内存空间）；真正的深拷贝容器对象和容器元素都开辟新的内存空间</li>
+</ul>
+</li>
+<li>strong 和 weak 关键字：strong 修饰的指针变量指向对象时，当指针指向新值或指针不复存在，相关联的对象自动释放；weak 修饰的指针变量指向对象时，当对象的拥有者指向新值或者不复存在时，weak 修饰的指针自动置为nil。（strong 只用于ARC，等同于retain）</li>
+</ul>
+</li>
+<li><p>iOS基本框架</p>
+</li>
+<li><p>iOS编程思想</p>
+<ul>
+<li>链式编程<ul>
+<li>定义：它是可以通过“点”语法，进行调用所执行的函数或代码块，并可以连续的使用。</li>
+<li>特点：方法必须有返回值，并且该值是对象本身；返回值的形式可以是Block块（返回值必须是对象本身，也可带参数）也可以是对象本身。</li>
+</ul>
+</li>
+<li>函数式编程<ul>
+<li>定义：对象调用函数后，此函数的返回值就是该对象本身，进而可以继续调用该对象的其他函数。</li>
+<li>特点：可以嵌套的调用对象所拥有的函数。</li>
+</ul>
+</li>
+<li>响应式编程<ul>
+<li>定义：某一个变量的值会随着另一个变量的值改变而改变，它是和事件流有关的编程模式。</li>
+<li>特点：在编程过程中建立一个动态的数据流关系。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>闭包（block）：</p>
+<ul>
+<li>block：能持有作用于变量的匿名函数</li>
+</ul>
+</li>
+<li><p>OC 分类和扩展 category</p>
+</li>
+<li><p>UIViewController 生命周期 从init开始 每一步都干什么</p>
+</li>
+<li><p>lottie 动画 和原生动画区别</p>
+</li>
+<li><p>pv页面加载</p>
+</li>
+<li><p>gcd 设计场景：A. B. C. AB相互异步，C 依赖 AB 结束</p>
+</li>
+<li><h2 id="swift："><a href="#swift：" class="headerlink" title="swift："></a>swift：</h2></li>
+<li><p>struct 和 class 的区别<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/beckwang0912/p/8508299.html">Swift 浅谈Struct与Class - 贝克的飞机 - 博客园</a><br>深拷贝：内容拷贝，浅拷贝：指针拷贝。</p>
+<ul>
+<li><p>property 初始化不同<br>struct可直接在构造函数中初始化property，class不可以。class 在初始化时不能直接把 property 放在 默认的constructor 的参数里，而是需要自己创建一个带参数的constructor（.init）.</p>
+</li>
+<li><p>变量赋值方式不同（深浅copy）<br>赋值=：struct会copy一份相同的内容给另一个变量，<strong>开辟新的内存地址</strong>；class不会copy给另一个变量，只是增加了原变量内存地址的引用，<strong>没有开辟新的内存地址</strong></p>
+</li>
+<li><p>immutable变量<br>struct遵循var/let可变动内容/不可变内容，class不存在这一问题</p>
+</li>
+<li><p>mutating function<br>struct 和 class 的差別是 struct 的 function 要去改变 property 的值的时候要加上 mutating，而 class 不用。<br><img src=":storage/942aa877-0348-4f8c-afb3-20a45791d984/9b748ebd.png" alt="9b748ebd.png"></p>
+</li>
+<li><p>继承<br>struct不能继承，class可以继承</p>
+</li>
+<li><p>struct更“轻量级”<br>struct分配在栈中，class分配在堆中，struct 访问比 class 快：</p>
+<ol>
+<li>栈是程序启动的时候，系统事先分配的，使用过程中，系统不干预；<br>堆是用的时候才向系统申请的，使用完毕需要交还，申请和交还的过程开销相对较大。</li>
+<li>栈是编译时分配空间，而堆是动态分配（运行时分配空间），所以栈的速度快。</li>
+</ol>
+<p>从两方面来考虑：</p>
+<ul>
+<li>分配和释放：堆在分配和释放时都要调用函数（MALLOC,FREE)，比如分配时会到堆空间去寻找足够大小的空间（因为多次分配释放后会造成空洞），这些都会花费一定的时间，而栈却不需要这些。</li>
+<li>访问时间：访问堆的一个具体单元，需要两次访问内存，第一次得取得指针，第二次才是真正得数据，而栈只需访问一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>swift把struct作为数据模型的注意事项<br> 优点：</p>
+<ul>
+<li><p>安全： struct用值类型传递，没有引用计数</p>
+</li>
+<li><p>内存：没有引用数，不会因为循环引用导致内存泄露</p>
+</li>
+<li><p>速度：值类型通常以栈形式分配，比class快</p>
+</li>
+<li><p>拷贝：Objective-C 里拷贝一个对象,你必须选用正确的拷贝类型（深拷贝、浅拷贝）,而值类型的拷贝则非常轻松！</p>
+</li>
+<li><p>线程安全：值类型是自动线程安全的。无论你从哪个线程去访问你的 Struct ，都非常简单。</p>
+<p>缺点：</p>
+</li>
+<li><p>OC： Objective-C 的代码里无法调用 Swift 的 Struct，因为要在 Objective-C 里调用 Swift 代码的话，对象需要继承于 NSObject。</p>
+</li>
+<li><p>继承：struct不能相互继承</p>
+</li>
+<li><p>NSUserDefaults：Struct 不能被序列化成 NSData 对象。</p>
+<p>总结：<br>如果模型较小，并且无需继承、无需储存到 NSUserDefault 或者无需 Objective-C 使用时，建议使用 Struct。</p>
+</li>
+</ul>
+</li>
+<li><p>swift 与 OC 的区别<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/acbee0576f84">Swift和OC有什么区别？ - 简书</a><br>swift：</p>
+<ul>
+<li>Swift 是类型安全的，编译时会做类型检查，不匹配的类型会错误标记出来</li>
+<li>OC 不是类型安全的，编译期间只会警告，不会报错</li>
+<li>Swift 的struct enum tuple都是值类型，Int,Double,Float,String,Array,Dictionary,Set都是用结构体实现的，也是值类型。</li>
+<li>OC里面NSNumber,NSString以及集合类对象都是指针类型。</li>
+<li>Swift的枚举可以使用整型 浮点型 字符串等，还有拥有属性和方法，甚至支持泛型，协议，扩展等</li>
+<li>OC的枚举只是个标记值</li>
+<li>Swift 可以面向协议编程、面向对象编程、函数式编程</li>
+<li>OC以面向对象编程为主，也可以引入类似 ReactiveCocoa 的类库来进行函数式编程</li>
+<li>Swift 可以直接定义函数类型变量，可以作为其他函数参数传递，可以作为函数返回值返回</li>
+<li>OC需要用selector或block才能模拟Swift类似效果。</li>
+</ul>
+</li>
+<li><p>swift 函数式编程</p>
+</li>
+<li><p>defer</p>
+</li>
+<li><p>写时复制</p>
+</li>
+</ol>
+<p>static function，class function</p>
+<p>数组最小值最大区间和： 单调栈</p>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ol>
+<li>var，let，const</li>
+<li>常见数字结构</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i>
+
+ 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/1b670c14/" rel="next" title="iOS 解决键盘遮挡输入框问题，输入框随键盘弹起上移，切换输入法时动态调整">
+                <i class="fa fa-chevron-left"></i> iOS 解决键盘遮挡输入框问题，输入框随键盘弹起上移，切换输入法时动态调整
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/skittleskittles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="fusy0714@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+            
+            
+              <div class="links-of-blogroll motion-element links-of-blogroll-block">
+                <div class="links-of-blogroll-title">
+                  <!-- modify icon to fire by szw -->
+                  <i class="fa fa-history fa-" aria-hidden="true"></i>
+                  Recent Articles
+                </div>
+                <ul class="links-of-blogroll-list">
+                  
+                  
+                    <li class="recent_posts_li">
+                      <a href="/posts/55d100b9/" title="面试知识总结" target="_blank">面试知识总结</a>
+                    </li>
+                  
+                    <li class="recent_posts_li">
+                      <a href="/posts/1b670c14/" title="iOS 解决键盘遮挡输入框问题，输入框随键盘弹起上移，切换输入法时动态调整" target="_blank">iOS 解决键盘遮挡输入框问题，输入框随键盘弹起上移，切换输入法时动态调整</a>
+                    </li>
+                  
+                    <li class="recent_posts_li">
+                      <a href="/posts/4a17b156/" title="Hello World" target="_blank">Hello World</a>
+                    </li>
+                  
+                </ul>
+              </div>
+            
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E8%99%AB%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">爬虫：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E5%8F%8D%E7%88%AC"><span class="nav-number">1.1.</span> <span class="nav-text">避免反爬</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">数据库：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">操作系统：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">网络：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS"><span class="nav-number">7.</span> <span class="nav-text">iOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#swift%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">swift：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">9.</span> <span class="nav-text">JS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fusy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">4.8k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'cC1s4bH73uM3O8phtNdMSHsn-gzGzoHsz',
+        appKey: 'mt7hkTnvmjot70tzWxPckpEE',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
